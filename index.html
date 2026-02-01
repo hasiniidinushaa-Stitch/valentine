@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>💖 Be My Valentine 💖</title>
+
+<style>
+body {
+  background: linear-gradient(#ffd6e8, #fff0f6);
+  font-family: "Comic Sans MS", cursive;
+  text-align: center;
+  overflow: hidden;
+}
+
+h1 {
+  margin-top: 120px;
+  font-size: 42px;
+  color: #ff4d88;
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+button {
+  font-size: 22px;
+  padding: 16px 34px;
+  border-radius: 40px;
+  border: none;
+  cursor: pointer;
+  margin: 20px;
+  transition: transform 0.2s;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+#yes {
+  background: #ff4d88;
+  color: white;
+  box-shadow: 0 10px 20px rgba(255, 77, 136, 0.4);
+}
+
+#no {
+  background: #ffe6ef;
+  color: #ff4d88;
+  position: absolute;
+}
+
+.heart {
+  position: fixed;
+  font-size: 24px;
+  animation: float 4s linear infinite;
+}
+
+@keyframes float {
+  0% { bottom: -20px; opacity: 0; }
+  50% { opacity: 1; }
+  100% { bottom: 110%; opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<h1>Will you be my Valentine? 💕</h1>
+
+<button id="yes" onclick="yesClicked()">YES 💖</button>
+<button id="no" onmouseover="moveNo()">NO 😤</button>
+
+<script>
+function moveNo() {
+  const no = document.getElementById("no");
+  no.style.left = Math.random() * (window.innerWidth - 120) + "px";
+  no.style.top = Math.random() * (window.innerHeight - 60) + "px";
+}
+
+function yesClicked() {
+  document.body.innerHTML = `
+    <h1>I KNEW IT 😭💘</h1>
+    <p style="font-size:30px; color:#ff4d88;">
+      You’re stuck with me now 💕<br><br>
+      Happy Valentine’s Day 🧸💖
+    </p>
+  `;
+  setInterval(createHeart, 200);
+}
+
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "💖";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 5000);
+}
+
+// floating hearts at start
+setInterval(createHeart, 400);
+</script>
+
+</body>
+</html>
